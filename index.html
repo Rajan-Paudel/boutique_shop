@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Manju's Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="js/float-panel.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="css/content.css" rel="stylesheet" />
+
+ <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/social.css">
+ <link rel="stylesheet" href="css/slider.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+  <style>
+    
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="leftlogo"href="#"> <i></i></div>
+  <div class="burger">
+    <div class="burger__patty"></div>
+    <div class="burger__patty"></div>
+    <div class="burger__patty"></div>
+  </div>
+
+  <nav class="menu">
+    <div class="menu__brand">
+      <a href=""><div class="logo"></div></a>
+    </div>
+    <ul class="menu__list">
+      <li class="menu__item"><a href="" class="menu__link">Kurtas</a></li>
+      <li class="menu__item"><a href="" class="menu__link">Collections</a></li>
+      <li class="menu__item"><a href="" class="menu__link">Trendings</a></li>
+      <li class="menu__item"><a href="" class="menu__link">Party Wears</a></li>
+      <li class="menu__item"><a href="" class="menu__link">Wedding</a></li>
+      <li class="menu__item"><a href="" class="menu__link">Visit Us</a></li>
+      <br><br>
+      <div class="fa_icons">
+      <i></i><h2 style="font-size:14px; font-family: calibri, sans-serif; margin-bottom:5px; color:#333">follow our Social media handles</h2></i>
+
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-youtube"></a>
+      <a href="#" class="fa fa-whatsapp"></a>
+    </ul>
+  </nav>
+</header>
+<!--
+<main>
+  <h1><a href="#">Manju's Collection</a></h1>
+  
+  
+  
+  <h2>A Classic that is Loved by All.</h2>
+</main>-->
+
+    <script src="js/index.js"></script>
+
+  <section class="cd-slider">
+    <ul>
+      <li data-color="#801d27f6">
+        <div class="content" style="background-image:url(mediafiles/backgrounds/a.png)">
+          <blockquote>
+            <p>2020 Summer collection</p>
+            <span>upto 40% off!</span>
+          </blockquote>
+        </div>
+      </li>
+      <li data-color="#c07b0def">
+        <div class="content" style="background-image:url(mediafiles/backgrounds/b.png)">
+          <blockquote>
+            <p>Get the best classic outfit to boost your beauty</p>
+            <span>End- Year Sale is Active Now!</span>
+          </blockquote>
+        </div>
+      </li>
+      <li data-color="#0c28b4e8">
+        <div class="content" style="background-image:url(mediafiles/backgrounds/c.png)">
+          <blockquote>
+            <p>Teej Special Kurtas and Suits Collection</p>
+            <span>Grab your offer Soon! </span>
+          </blockquote>
+        </div>
+      </li>
+    </ul>
+    <nav>
+      <div><a class="prev" href="#"></a></div>
+      <div><a class="next" href="#"></a></div>
+    </nav>
+  </section>
+  <script>
+      (function() {
+    
+    var autoUpdate = false,
+        timeTrans = 4000;
+    
+    var cdSlider = document.querySelector('.cd-slider'),
+      item = cdSlider.querySelectorAll("li"),
+      nav = cdSlider.querySelector("nav");
+  
+    item[0].className = "current_slide";
+  
+    for (var i = 0, len = item.length; i < len; i++) {
+      var color = item[i].getAttribute("data-color");
+      item[i].style.backgroundColor=color;
+    }
+  
+    // Detect IE
+    // hide ripple effect on IE9
+    var ua = window.navigator.userAgent;
+      var msie = ua.indexOf("MSIE");
+      if ( msie > 0 ) {
+        var version = parseInt(ua.substring(msie+ 5, ua.indexOf(".", msie)));
+        if (version === 9) { cdSlider.className = "cd-slider ie9";}
+    }
+  
+    if (item.length <= 1) {
+      nav.style.display = "none";
+    }
+  
+    function prevSlide() {
+      var currentSlide = cdSlider.querySelector("li.current_slide"),
+        prevElement = currentSlide.previousElementSibling,
+        prevSlide = ( prevElement !== null) ? prevElement : item[item.length-1],
+        prevColor = prevSlide.getAttribute("data-color"),
+        el = document.createElement('span');
+  
+      currentSlide.className = "";
+      prevSlide.className = "current_slide";
+  
+      nav.children[0].appendChild(el);
+  
+      var size = ( cdSlider.clientWidth >= cdSlider.clientHeight ) ? cdSlider.clientWidth*2 : cdSlider.clientHeight*2,
+          ripple = nav.children[0].querySelector("span");
+  
+      ripple.style.height = size + 'px';
+      ripple.style.width = size + 'px';
+      ripple.style.backgroundColor = prevColor;
+  
+      ripple.addEventListener("webkitTransitionEnd", function() {
+        if (this.parentNode) {
+          this.parentNode.removeChild(this);
+        }
+      });
+  
+      ripple.addEventListener("transitionend", function() {
+        if (this.parentNode) {
+          this.parentNode.removeChild(this);
+        }
+      });
+  
+    }
+  
+    function nextSlide() {
+      var currentSlide = cdSlider.querySelector("li.current_slide"),
+        nextElement = currentSlide.nextElementSibling,
+        nextSlide = ( nextElement !== null ) ? nextElement : item[0],
+        nextColor = nextSlide.getAttribute("data-color"),
+        el = document.createElement('span');
+  
+      currentSlide.className = "";
+      nextSlide.className = "current_slide";
+  
+      nav.children[1].appendChild(el);
+  
+      var size = ( cdSlider.clientWidth >= cdSlider.clientHeight ) ? cdSlider.clientWidth*2 : cdSlider.clientHeight*2,
+          ripple = nav.children[1].querySelector("span");
+  
+      ripple.style.height = size + 'px';
+      ripple.style.width = size + 'px';
+      ripple.style.backgroundColor = nextColor;
+  
+      ripple.addEventListener("webkitTransitionEnd", function() {
+        if (this.parentNode) {
+          this.parentNode.removeChild(this);
+        }
+      });
+  
+      ripple.addEventListener("transitionend", function() {
+        if (this.parentNode) {
+          this.parentNode.removeChild(this);
+        }
+      });
+  
+    }
+  
+    updateNavColor();
+  
+    function updateNavColor () {
+      var currentSlide = cdSlider.querySelector("li.current_slide");
+  
+      var nextColor = ( currentSlide.nextElementSibling !== null ) ? currentSlide.nextElementSibling.getAttribute("data-color") : item[0].getAttribute("data-color");
+      var	prevColor = ( currentSlide.previousElementSibling !== null ) ? currentSlide.previousElementSibling.getAttribute("data-color") : item[item.length-1].getAttribute("data-color");
+  
+      if (item.length > 2) {
+        nav.querySelector(".prev").style.backgroundColor = prevColor;
+        nav.querySelector(".next").style.backgroundColor = nextColor;
+      }
+    }
+  
+    nav.querySelector(".next").addEventListener('click', function(event) {
+      event.preventDefault();
+      nextSlide();
+      updateNavColor();
+    });
+  
+    nav.querySelector(".prev").addEventListener("click", function(event) {
+      event.preventDefault();
+      prevSlide();
+      updateNavColor();
+    });
+    
+    //autoUpdate
+    setInterval(function() {
+      if (autoUpdate) {
+        nextSlide();
+        updateNavColor();
+      };
+    },timeTrans);
+  
+  })();
+  </script>
+
+<div id="wrapper">
+
+
+
+
+
+
+
+
+  <section class="text-center bg-gray">
+    <h1 style="color:#111; font-family: sans-serif;">Our Collections</h1><br>
+    
+    <ul id="rig">
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 0;"></span>
+                <h3>Summer</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 6.66%;"></span>
+                <h3>Teej</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 20%;"></span>
+                <h3>Tihar</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 26.66%;"></span>
+                <h3>Special Collection</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 33.33%;"></span>
+                <h3>Party Wear</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 80%;"></span>
+                <h3>Just Married Collection</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 93.333%;"></span>
+                <h3>Trendings</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        <li class="slideanim">
+            <a class="rig-cell" href="#">
+                <span class="rig-img" style="background-position:0 53.33%;"></span>
+                <h3>Fashion</h3>
+                <span class="rig-overlay"></span>
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+  <section class="text-center">
+      <h2>OUR SERVICES</h2><br><br>
+      <div class="row slideanim">
+          <div class="col-33">
+              <a class="fa fa-heart"></a>
+              <h4>Satisfaction</h4>
+              <p>Our main Priority is to provide best products to our customer</p>
+          </div>
+          <div class="col-33">
+              <i class="fa fa-pied-piper"></i>
+              <h4>Best Quality</h4>
+              <p>We sell only top Quality of Products</p>
+          </div>
+          <div class="col-33">
+              <i class="fa fa-university"></i>
+              <h4>Home Delivery</h4>
+              <p>We provide home delivery for effortless Shopping. </p>
+          </div>
+      
+          <div class="col-33">
+              <i class="fa fa-compass"></i>
+              <h4>Easy Location</h4>
+              <p>You can easily vist us for dealing and shopping purpose.</p>
+          </div>
+      </div>
+  </section>
+
+  
+
+  <section class="row" style="background-color: #FFF">
+    <div class="col-60">
+        <h2>About Manju's Collection</h2>
+        <h4>Mrs. Manju Gadtaula</h4>
+        <p>A woman’s wardrobe is her opportunity to stand out and make a lasting first impression. Launched in 2012, Impressions Online Boutique offers a wide range of apparel to fit any woman’s unique sense of style. Our clothing and accessories are carefully curated to provide our customers the latest fashions. To keep our customers in style we post new arrivals daily, as well as offer stylist picks to help any indecisive shoppers. Impressions Online Boutique is a fashionista’s best place to create the perfect wardrobe.
+          </p> 
+    </div>
+    <div class="col-40 text-center">
+      <i class="slideanim"> <img src="mediafiles/peoples/manju.png" style="width:300px; background-color: #EEE; border-radius: 50%; border:3px solid #ddd" ></i>
+    </div>
+</section>
+
+<section class="row bg-gray" id="work">
+    <div class="col-40 text-center">
+        <i class="slideanim fa fa-check-circle-o"></i>
+    </div>
+    <div class="col-60">
+        <h2>How we Work ?</h2>
+        <p>We take products from the famous dealers providing huge amount of sctocks and variety of choices, we pick only selected pieces to make our collection best for all womens, so they can purchase any cloth with full satifaction about the quality and class of the cloth.</p>
+        <h4><strong>MISSION:</strong> To Just Provide the Chocies which will bring best look out of our Customers.</h4>
+        
+    </div>
+</section>
+<br>
+
+</div>
+
+
+<footer class="text-center">
+  <a href="#" title="Web UI components" style="background-color: #ddd; color:#333; padding:5px 20px; text-decoration: none; border-radius:25px">www.manjuscollection.com</a></p>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+</body>
+</html>
